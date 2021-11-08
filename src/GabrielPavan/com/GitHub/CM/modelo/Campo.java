@@ -3,6 +3,8 @@ package GabrielPavan.com.GitHub.CM.modelo;
 import java.util.ArrayList;
 import java.util.List;
 
+import GabrielPavan.com.GitHub.CM.excecao.ExplosaoException;
+
 public class Campo {
 	
 	private boolean Minado = false;
@@ -35,5 +37,27 @@ public class Campo {
 		} else {
 			return false;
 		}
+	}
+	void alternarMarcacao() {
+		if(!Aberto) {
+			Marcado =  !Marcado;
+		} 
+	}
+	boolean abrir() {
+		if (!Aberto && !Marcado) {
+			Aberto = true;
+			if (Minado) {
+				throw new ExplosaoException();
+			}
+			if (vizinhacaSegura()) {
+				Vizinhos.forEach(v -> v.abrir());
+			}
+			return true;
+		} else {
+			return false;
+		}
+	}
+	boolean vizinhacaSegura() {
+		return Vizinhos.stream().noneMatch(v -> v.Minado);
 	}
 }
