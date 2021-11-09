@@ -90,4 +90,36 @@ public class CampoTeste {
 		
 		assertTrue(campo22.isAberto() && campo11.isFechado());
 	}
+	@Test
+	void testesGets() {
+		int	coluna = campo.getColuna();
+		int linha = campo.getLinha();
+		assertTrue(coluna + linha == 6);
+	}
+	@Test
+	void testeObjetivoAlcancado() {
+		Campo campo11 = new Campo(1, 1);
+		Campo campo12 = new Campo(1, 2);
+		campo12.minar();
+		Campo campo22 = new Campo(2, 2);
+		campo22.adicionarVizinho(campo12);
+		campo22.adicionarVizinho(campo11);
+		campo.adicionarVizinho(campo22);
+		campo.abrir();
+		assertTrue(campo.objetivoAlcancado());
+	}
+	@Test
+	void minasNaVizinhanca() {
+		Campo campo22 = new Campo(2, 2);
+		campo22.minar();
+		campo.adicionarVizinho(campo22);
+		boolean test = campo.minasNaVizinhanca() == 1;
+		assertTrue(test);
+	}
+	@Test
+	void reiniciar() {
+		campo.reiniciar();
+		boolean test = !campo.isMarcado() && !campo.isAberto() && !campo.isMinado();
+		assertTrue(test);
+	}
 }
