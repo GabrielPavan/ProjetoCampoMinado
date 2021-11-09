@@ -64,6 +64,9 @@ public class Campo {
 	void minar() {
 			Minado = true;
 	}
+	void setAberto(boolean aberto) {
+		Aberto = aberto;
+	}
 	public boolean isMarcado() {
 		return Marcado;
 	}
