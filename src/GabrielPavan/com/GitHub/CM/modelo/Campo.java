@@ -3,8 +3,6 @@ package GabrielPavan.com.GitHub.CM.modelo;
 import java.util.ArrayList;
 import java.util.List;
 
-import GabrielPavan.com.GitHub.CM.excecao.ExplosaoException;
-
 public class Campo {
 	
 	private boolean Minado = false;
@@ -47,7 +45,8 @@ public class Campo {
 		if (!Aberto && !Marcado) {
 			Aberto = true;
 			if (Minado) {
-				throw new ExplosaoException();
+				//TODO implementar no futuro
+				//FIXME arrumar!!
 			}
 			if (vizinhacaSegura()) {
 				Vizinhos.forEach(v -> v.abrir());
@@ -98,17 +97,17 @@ public class Campo {
 		Minado = false;
 		Marcado = false;
 	}
-	public String toString() {
-		if(Marcado) {
-			return "X";
-		} else if(Aberto && Minado) {
-			return "*";
-		} else if(Aberto && minasNaVizinhanca() > 0) {
-			return Long.toString(minasNaVizinhanca());
-		} else if(Aberto) {
-			return " ";
-		} else {
-			return "?";
-		}
-	}
+	//public String toString() {   //Versao 1.0 Usando console!!
+	//	if(Marcado) {
+	//		return "X";
+	//	} else if(Aberto && Minado) {
+	//		return "*";
+	//	} else if(Aberto && minasNaVizinhanca() > 0) {
+	//		return Long.toString(minasNaVizinhanca());
+	//	} else if(Aberto) {
+	//		return " ";
+	//	} else {
+	//		return "?";
+	//	}
 }
+
